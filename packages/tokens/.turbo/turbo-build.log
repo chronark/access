@@ -1,0 +1,32 @@
+
+> @chronark/access-tokens@0.0.1 build /Users/andreasthomas/github/chronark/token/packages/tokens
+> tsup
+
+CLI Building entry: ./src/index.ts, ./src/crypto/web.ts, ./src/crypto/node.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v6.7.0
+CLI Using tsup config: /Users/andreasthomas/github/chronark/token/packages/tokens/tsup.config.js
+CLI Target: esnext
+CLI Cleaning output folder
+CJS Build start
+ESM Build start
+ESM dist/crypto/node.js     341.00 B
+ESM dist/crypto/web.js      497.00 B
+ESM dist/index.js           1.08 KB
+ESM dist/crypto/node.js.map 750.00 B
+ESM dist/crypto/web.js.map  1.13 KB
+ESM dist/index.js.map       2.64 KB
+ESM ⚡️ Build success in 9ms
+CJS dist/crypto/node.cjs     1.96 KB
+CJS dist/index.cjs           2.10 KB
+CJS dist/crypto/web.cjs      1.46 KB
+CJS dist/index.cjs.map       2.77 KB
+CJS dist/crypto/node.cjs.map 823.00 B
+CJS dist/crypto/web.cjs.map  1.17 KB
+CJS ⚡️ Build success in 9ms
+DTS Build start
+DTS ⚡️ Build success in 857ms
+DTS dist/index.d.ts              2.43 KB
+DTS dist/crypto/web.d.ts         238.00 B
+DTS dist/crypto/node.d.ts        240.00 B
+DTS dist/interface-86514e8d.d.ts 179.00 B

@@ -1,0 +1,6 @@
+dist
+node_modules
+# stryker temp files
+.stryker-tmp
+.env*
+!.env.example
