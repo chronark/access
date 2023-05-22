@@ -20,7 +20,7 @@ export class Policy<TResources extends Resources, TResourceIdentifier extends st
       statements: this.statements,
     });
   }
-  static parse<TResources extends Resources>(policy: string): Policy<TResources> {
+  static parse<TResources extends Resources, TResourceIdentifier extends string>(policy: string): Policy<TResources,TResourceIdentifier> {
     const parsed = JSON.parse(policy) as {
       version: string;
       statements: Statement<TResources>[];
