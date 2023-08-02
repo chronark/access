@@ -94,14 +94,6 @@ export class Policy<TResources extends Resources, TResourceIdentifier extends st
   }
 }
 
-const toJSON = <TResources extends Resources, TResourceIdentifier extends string>(policy: Policy<TResources, TResourceIdentifier>) => {
-  return JSON.parse(policy.toString()) as {
-    statement: Statement<TResources>,
-    action: Action<TResources>,
-    resources: { [K in keyof TResources]?: Record<TResourceIdentifier, SubArray<TResources[K]>> }
-  }
-}
-
 export const mergePolicies = <TResources extends Resources, TResourceIdentifier extends string = string>(
   policyOne: Policy<TResources, TResourceIdentifier>,
   policyTwo: Policy<TResources, TResourceIdentifier>,
