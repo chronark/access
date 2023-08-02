@@ -190,14 +190,15 @@ export function testStore(newStore: () => Store | Promise<Store>) {
         await store.set(t);
       }
 
+      // rome-ignore lint/style/noNonNullAssertion: we literally just set this
       const req: TokenListRequest = { owner: tokens.at(0)!.owner! };
       const result = await store.list(req);
       expect(result).toEqual([
         {
-          owner: tokens.at(0)!.owner,
-          hash: tokens.at(0)!.hash,
+          owner: tokens.at(0)?.owner,
+          hash: tokens.at(0)?.hash,
           expiresAt: null,
-          data: tokens.at(0)!.data,
+          data: tokens.at(0)?.data,
         },
       ]);
     });

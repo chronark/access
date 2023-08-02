@@ -1,21 +1,22 @@
 
-> @chronark/access-policies@0.0.1 build /Users/andreasthomas/github/chronark/token/packages/policies
+> @chronark/access-policies@0.0.2 build /Users/andreasthomas/github/chronark/access/packages/policies
 > tsup
 
 CLI Building entry: src/index.ts
 CLI Using tsconfig: tsconfig.json
-CLI tsup v6.7.0
-CLI Using tsup config: /Users/andreasthomas/github/chronark/token/packages/policies/tsup.config.js
+CLI tsup v7.2.0
+CLI Using tsup config: /Users/andreasthomas/github/chronark/access/packages/policies/tsup.config.js
 CLI Target: esnext
 CLI Cleaning output folder
 CJS Build start
 ESM Build start
-ESM dist/index.js     2.27 KB
-ESM dist/index.js.map 5.14 KB
-ESM ⚡️ Build success in 7ms
-CJS dist/index.cjs     3.26 KB
-CJS dist/index.cjs.map 5.26 KB
-CJS ⚡️ Build success in 7ms
+ESM dist/index.js     2.28 KB
+ESM dist/index.js.map 5.24 KB
+ESM ⚡️ Build success in 8ms
+CJS dist/index.cjs     3.27 KB
+CJS dist/index.cjs.map 5.36 KB
+CJS ⚡️ Build success in 8ms
 DTS Build start
-DTS ⚡️ Build success in 565ms
-DTS dist/index.d.ts 3.18 KB
+DTS ⚡️ Build success in 535ms
+DTS dist/index.d.cts 3.23 KB
+DTS dist/index.d.ts  3.23 KB

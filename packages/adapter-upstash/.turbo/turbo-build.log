@@ -1,21 +1,22 @@
 
-> @chronark/access-adapter-upstash@0.0.1 build /Users/andreasthomas/github/chronark/token/packages/adapter-upstash
+> @chronark/access-adapter-upstash@0.0.1 build /Users/andreasthomas/github/chronark/access/packages/adapter-upstash
 > tsup
 
 CLI Building entry: src/index.ts
 CLI Using tsconfig: tsconfig.json
-CLI tsup v6.7.0
-CLI Using tsup config: /Users/andreasthomas/github/chronark/token/packages/adapter-upstash/tsup.config.js
+CLI tsup v7.2.0
+CLI Using tsup config: /Users/andreasthomas/github/chronark/access/packages/adapter-upstash/tsup.config.js
 CLI Target: esnext
 CLI Cleaning output folder
 CJS Build start
 ESM Build start
-ESM dist/index.js     1.60 KB
-ESM dist/index.js.map 3.97 KB
+ESM dist/index.js     1.57 KB
+ESM dist/index.js.map 3.90 KB
 ESM ⚡️ Build success in 5ms
-CJS dist/index.cjs     2.61 KB
-CJS dist/index.cjs.map 4.07 KB
+CJS dist/index.cjs     2.57 KB
+CJS dist/index.cjs.map 4.00 KB
 CJS ⚡️ Build success in 6ms
 DTS Build start
-DTS ⚡️ Build success in 506ms
-DTS dist/index.d.ts 1.02 KB
+DTS ⚡️ Build success in 527ms
+DTS dist/index.d.cts 1.02 KB
+DTS dist/index.d.ts  1.02 KB
