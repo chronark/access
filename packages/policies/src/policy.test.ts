@@ -6,6 +6,10 @@ type Resources = {
   channel: ["read", "ingest", "update"];
   user: ["update", "read"];
 };
+type SomeId = string;
+type ResourceId = string;
+type GRID = `${SomeId}::${keyof Resources | "*"}::${ResourceId}`;
+
 
 describe("constructor", () => {
   it("creates a Policy with a single statement", () => {
@@ -158,7 +162,7 @@ describe("parse", () => {
     const singleStatementPolicy = new Policy<Resources>(statement);
     const serializedPolicy = singleStatementPolicy.toString();
 
-    const parsedPolicy = Policy.parse<Resources>(serializedPolicy);
+    const parsedPolicy = Policy.parse<Resources, GRID>(serializedPolicy);
     expect(parsedPolicy.version).toBe("v1");
     expect(parsedPolicy.statements.length).toBe(1);
     expect(parsedPolicy.statements[0]).toEqual(statement);
@@ -190,7 +194,7 @@ describe("parse", () => {
     const multipleStatementsPolicy = new Policy<Resources>([statement1, statement2]);
     const serializedPolicy = multipleStatementsPolicy.toString();
 
-    const parsedPolicy = Policy.parse<Resources>(serializedPolicy);
+    const parsedPolicy = Policy.parse<Resources, GRID>(serializedPolicy);
     expect(parsedPolicy.version).toBe("v1");
     expect(parsedPolicy.statements.length).toBe(2);
     expect(parsedPolicy.statements[0]).toEqual(statement1);
@@ -199,7 +203,7 @@ describe("parse", () => {
 
   it("throws an error when parsing an unsupported policy version", () => {
     const unsupportedVersionPolicy = `{"version": "v2", "statements": []}`;
-    expect(() => Policy.parse<Resources>(unsupportedVersionPolicy)).toThrow(
+    expect(() => Policy.parse<Resources, GRID>(unsupportedVersionPolicy)).toThrow(
       "Unsupported policy version: v2",
     );
   });

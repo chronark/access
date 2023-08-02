@@ -1,4 +1,4 @@
-import type { Action, Resources, Statement } from "./types";
+import type { Action, Resources, Statement, SubArray } from "./types";
 import { filter } from "./wildcard";
 
 export class Policy<TResources extends Resources, TResourceIdentifier extends string = string> {
@@ -20,6 +20,7 @@ export class Policy<TResources extends Resources, TResourceIdentifier extends st
       statements: this.statements,
     });
   }
+
   static parse<TResources extends Resources, TResourceIdentifier extends string>(policy: string): Policy<TResources,TResourceIdentifier> {
     const parsed = JSON.parse(policy) as {
       version: string;
@@ -92,3 +93,48 @@ export class Policy<TResources extends Resources, TResourceIdentifier extends st
     return false;
   }
 }
+
+const toJSON = <TResources extends Resources, TResourceIdentifier extends string>(policy: Policy<TResources, TResourceIdentifier>) => {
+  return JSON.parse(policy.toString()) as {
+    statement: Statement<TResources>,
+    action: Action<TResources>,
+    resources: { [K in keyof TResources]?: Record<TResourceIdentifier, SubArray<TResources[K]>> }
+  }
+}
+
+export const mergePolicies = <TResources extends Resources, TResourceIdentifier extends string = string>(
+  policyOne: Policy<TResources, TResourceIdentifier>,
+  policyTwo: Policy<TResources, TResourceIdentifier>,
+): Policy<TResources, TResourceIdentifier> => {
+
+  const map: Record<string, any> = {};
+
+  [policyOne, policyTwo].forEach((policy) => {
+    policy.statements.forEach(statement => {
+      for (const resourceType in statement.resources) {
+        if (!map[resourceType]) {
+          map[resourceType] = {};
+        }
+        for (const resourceId in statement.resources[resourceType]!) { // Non-null assertion added here
+          const resourceActions = statement.resources[resourceType]![resourceId]; // Non-null assertions added here
+          if (!map[resourceType][resourceId]) {
+            map[resourceType][resourceId] = new Set(resourceActions);
+          } else {
+            resourceActions.forEach((action: any) => {
+              (map[resourceType][resourceId] as Set<any>).add(action);
+            });
+          }
+        }
+      }
+    });
+  });
+
+  // Transform Set back into an array
+  for (const resourceType in map) {
+    for (const resourceId in map[resourceType]) {
+      map[resourceType][resourceId] = Array.from(map[resourceType][resourceId] as Set<any>);
+    }
+  }
+
+  return new Policy<TResources, TResourceIdentifier>({ resources: map as any });
+};
