@@ -1,6 +1,6 @@
-import { Statement, SubArray } from "./types";
+import { Statement } from "./types";
 import { Policy } from "./policy";
-import { describe, expect, it, beforeEach } from "@jest/globals";
+import { describe, expect, it } from "@jest/globals";
 // Define some test resources
 type Resources = {
   channel: ["read", "ingest", "update"];

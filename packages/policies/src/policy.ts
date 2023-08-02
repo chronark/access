@@ -20,7 +20,9 @@ export class Policy<TResources extends Resources, TResourceIdentifier extends st
       statements: this.statements,
     });
   }
-  static parse<TResources extends Resources, TResourceIdentifier extends string>(policy: string): Policy<TResources,TResourceIdentifier> {
+  static parse<TResources extends Resources, TResourceIdentifier extends string>(
+    policy: string,
+  ): Policy<TResources, TResourceIdentifier> {
     const parsed = JSON.parse(policy) as {
       version: string;
       statements: Statement<TResources>[];
@@ -78,10 +80,10 @@ export class Policy<TResources extends Resources, TResourceIdentifier extends st
       return false;
     }
     for (const resourceId in statement.resources[resourceType]) {
-      const allowedActions = statement.resources[resourceType]![resourceId];
+      const allowedActions = statement.resources[resourceType]?.[resourceId];
 
       // Check if the resourceAction is in the allowedActions array
-      if (allowedActions.includes(actionType)) {
+      if (allowedActions?.includes(actionType)) {
         const matchingResources = filter([resource], resourceId);
         if (matchingResources.length > 0) {
           return true;
